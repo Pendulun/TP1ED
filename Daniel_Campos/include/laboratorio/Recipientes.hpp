@@ -1,6 +1,6 @@
 #ifndef RECIPIENTES_H
 #define RECIPIENTES_H
-#include "include/laboratorio/Celula.hpp"
+#include "./include/laboratorio/Celula.hpp"
 namespace laboratorio{
 	class Recipientes{
 	public:

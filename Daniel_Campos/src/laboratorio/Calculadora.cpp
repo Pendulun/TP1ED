@@ -1,7 +1,4 @@
 #include "include/laboratorio/Calculadora.hpp"
-#include "include/laboratorio/Fila.hpp"
-#include "include/laboratorio/Recipientes.hpp"
-#include "include/laboratorio/Celula.hpp"
 #include <exception>
 
 namespace laboratorio{

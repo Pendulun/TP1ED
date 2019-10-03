@@ -1,5 +1,7 @@
 #ifndef FILA_H
 #define FILA_H
+#include "./include/laboratorio/Celula.hpp"
+
 namespace laboratorio{
 	class Fila{
 	public:

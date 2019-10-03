@@ -1,5 +1,4 @@
 #include "include/laboratorio/Fila.hpp"
-#include "include/laboratorio/Celula.hpp"
 
 namespace laboratorio{
 
