@@ -1,14 +1,15 @@
-#include "include/laboratorio/Recipientes.hpp"
+#include "Recipientes.hpp"
+#include <cstdio>
 namespace laboratorio{
 	
-	Recipientes::singleton = nullptr;
+	Recipientes* Recipientes::singleton = nullptr;
 
 	Recipientes::Recipientes(){
-		this->primeiro=nullptr;
-		this->ultimo=nullptr;
+		this->primeiro=new Celula(0);//Célula cabeça
+		this->ultimo=this->primeiro;
 	}
 
-	static Recipiente::Recipientes* Recipientes::get_instance(){
+	Recipientes* Recipientes::getInstance(){
 		if (Recipientes::singleton == nullptr){
 			Recipientes::singleton = new Recipientes();
 		}
@@ -16,12 +17,12 @@ namespace laboratorio{
 		return Recipientes::singleton;
 	}
 
-	static void Recipientes::destruirRecipientes(){
+	void Recipientes::destruirRecipientes(){
 		delete Recipientes::singleton;
 	}
 
 	bool Recipientes::isVazia(){
-		return this->primeiro==nullptr&&this->ultimo==nullptr;
+		return ((this->primeiro==this->ultimo));
 	}
 
 	void Recipientes::limpa(){
@@ -38,12 +39,12 @@ namespace laboratorio{
 	}
 
 	void Recipientes::insere(unsigned int medida){
-		this->ultimo->setProx() = new Celula(medida);
+		this->ultimo->setProx(new Celula(medida));
 		this->ultimo=this->ultimo->getProx();
 	}
 
 	Celula* Recipientes::getPrimeiro(){
-		return this->primeiro;
+		return this->primeiro->getProx();
 	}
 
 	void Recipientes::retira(unsigned int medida){
@@ -57,10 +58,14 @@ namespace laboratorio{
 				if(celulaRetirada->getMedida()==medida){
 					//se for a primeira célula não cabeça, atualiza essa célula
 					if(anterior==nullptr){
-						this->primeiro->setProx()=this->primeiro->getProx()->getProx();
+						this->primeiro->setProx(celulaRetirada->getProx());
 					//se for diferente da primeira, reaponta o prox do anterior
 					}else{
-						anterior->setProx()=celulaRetirada->getProx();
+						//Se a célula a ser retirada for a última, att "ultimo"
+						if(celulaRetirada==this->ultimo){
+							this->ultimo=anterior;
+						}
+						anterior->setProx(celulaRetirada->getProx());
 					}
 					//deleta da memória
 					delete celulaRetirada;
@@ -71,14 +76,17 @@ namespace laboratorio{
 					celulaRetirada=celulaRetirada->getProx();
 				}
 				//se chegar no final da lista
-				if(celulaRetirada==nullptr){
-					retirou=true;
-				}
+				if(!retirou){
+					if(celulaRetirada==nullptr){
+						retirou=true;
+					}
+				}	
 			}while(!retirou);
 		}
 	}
 
-	void Recipientes::~Recipientes(){
+	Recipientes::~Recipientes(){
 		limpa();
+		delete this->primeiro;
 	}
 }

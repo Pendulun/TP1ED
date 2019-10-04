@@ -1,20 +1,20 @@
-#include "include/laboratorio/Calculadora.hpp"
-#include <exception>
+#include "Calculadora.hpp"
+#include <cstdio>
 
 namespace laboratorio{
 
-	Calculadora::singleton=nullptr;
+	Calculadora* Calculadora::singleton=nullptr;
 
 	Calculadora::Calculadora(){}
 
-	static Calculadora* Calculadora::getInstance(){
+	Calculadora* Calculadora::getInstance(){
 		if (Calculadora::singleton == nullptr){
 			Calculadora::singleton = new Calculadora();
 		}
 		return Calculadora::singleton;
 	}
 
-	static void Calculadora::destruirCalculadora(){
+	void Calculadora::destruirCalculadora(){
 		delete Calculadora::singleton;
 	}
 
@@ -22,7 +22,7 @@ namespace laboratorio{
 
 	//Calcula o mínimo de movimentos para se chegar ao valor necessário "valorMedido"
 	//de acordo com os recipientes
-	unsigned int Calculadora::calculaMinimo(unsigned int valorMedido){
+	unsigned int Calculadora::calcularMinimo(unsigned int valorMedido){
 		//Se existem Recipientes
 		if(!Recipientes::getInstance()->isVazia()){
 			if(valorMedido==0){
@@ -34,7 +34,6 @@ namespace laboratorio{
 			combinacoes->enfileira(0);
 			//Enquanto houver combinação a ser analisada
 			while(!combinacoes->vazia()){
-				//Celula* possibilidade=combinacoes->getPrimeiro();
 				Celula* recipiente=Recipientes::getInstance()->getPrimeiro();
 				//Usa todos os recipientes para gerar combinações da combinação atual
 				while(recipiente!=nullptr){
@@ -45,7 +44,7 @@ namespace laboratorio{
 					}else{
 						combinacoes->enfileira(medida);
 					}
-					try{
+					if(recipiente->getMedida()<combinacoes->getPrimeiro()->getMedida()){
 						medida=combinacoes->getPrimeiro()->getMedida()-recipiente->getMedida();
 						if(medida==valorMedido){
 							delete combinacoes;
@@ -53,8 +52,6 @@ namespace laboratorio{
 						}else{
 							combinacoes->enfileira(medida);
 						}
-					}catch(std::exception &e){
-						//Para o caso de "medida" ser negativo
 					}
 					recipiente=recipiente->getProx();
 				}

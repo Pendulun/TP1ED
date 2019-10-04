@@ -1,6 +1,6 @@
 #ifndef RECIPIENTES_H
 #define RECIPIENTES_H
-#include "./include/laboratorio/Celula.hpp"
+#include "Celula.hpp"
 namespace laboratorio{
 	class Recipientes{
 	public:
@@ -14,7 +14,7 @@ namespace laboratorio{
 		bool isVazia();
 	private:
 		static Recipientes* singleton;
-		Celula* primeiro,ultimo;
+		Celula* primeiro,*ultimo;
 		Recipientes();
 		void retiraPrimeiro();
 		~Recipientes();

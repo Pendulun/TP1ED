@@ -1,6 +1,6 @@
 #ifndef FILA_H
 #define FILA_H
-#include "./include/laboratorio/Celula.hpp"
+#include "Celula.hpp"
 
 namespace laboratorio{
 	class Fila{
@@ -14,7 +14,7 @@ namespace laboratorio{
 		~Fila();
 	private:
 		void limpa();
-		Celula* frente,tras,fimNivel;
+		Celula* frente,*tras,*fimNivel;
 	};
 }
 

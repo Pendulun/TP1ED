@@ -6,7 +6,7 @@ namespace laboratorio{
 	public:
 		void setMedida(unsigned int novaMedida);
 		unsigned int getMedida();
-		void setProx(laboratorio::Celula &proxCelula);
+		void setProx(laboratorio::Celula* proxCelula);
 		laboratorio::Celula* getProx();
 		Celula(unsigned int novaMedida);
 	private:

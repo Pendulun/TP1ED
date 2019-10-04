@@ -1,22 +1,21 @@
-#include "include/laboratorio/Bancada.hpp"
-
+#include "Bancada.hpp"
 namespace laboratorio{
 
-	Bancada::singleton=nullptr;
+	Bancada* Bancada::singleton=nullptr;
 
 	Bancada::Bancada(){
 		this->calculadora=Calculadora::getInstance();
 		this->listaRecipientes=Recipientes::getInstance();
 	}
 
-	static Bancada* Bancada::getInstance(){
+	Bancada* Bancada::getInstance(){
 		if (Bancada::singleton == nullptr){
 			Bancada::singleton = new Bancada();
 		}
 		return Bancada::singleton;
 	}
 
-	static void Bancada::destruirBancada(){
+	void Bancada::destruirBancada(){
 		delete Bancada::singleton;
 	}
 

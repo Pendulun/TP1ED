@@ -1,4 +1,4 @@
-#include "include/laboratorio/Celula.hpp"
+#include "Celula.hpp"
 
 namespace laboratorio{
 
@@ -10,7 +10,7 @@ namespace laboratorio{
 		return this->medida;
 	}
 
-	void Celula::setProx(laboratorio::Celula &proxCelula){
+	void Celula::setProx(laboratorio::Celula* proxCelula){
 		this->prox=proxCelula;
 	}
 

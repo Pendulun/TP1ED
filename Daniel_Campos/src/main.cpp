@@ -1,6 +1,6 @@
 #include <cstdio> 
 #include <iostream>
-#include "./include/laboratorio/Bancada.hpp"
+#include "Bancada.hpp"
 
 int main() {
   int q;
@@ -17,7 +17,7 @@ int main() {
       }
     }else if(e =='i'){
       if(q>=0){
-        adicionaRecipiente((unsigned int)(q));
+        bancadaLab->adicionaRecipiente((unsigned int)(q));
       }
     }
   }

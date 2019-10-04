@@ -1,9 +1,9 @@
 #ifndef CALCULADORA_H
 #define CALCULADORA_H
 
-#include "./include/laboratorio/Fila.hpp"
-#include "./include/laboratorio/Recipientes.hpp"
-#include "./include/laboratorio/Celula.hpp"
+#include "Fila.hpp"
+#include "Recipientes.hpp"
+#include "Celula.hpp"
 
 namespace laboratorio{
 	class Calculadora{

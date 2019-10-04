@@ -1,7 +1,7 @@
 #ifndef BANCADA_H
 #define BANCADA_H
-#include "./include/laboratorio/Calculadora.hpp"
-#include "./include/laboratorio/Recipientes.hpp"
+#include "Calculadora.hpp"
+#include "Recipientes.hpp"
 namespace laboratorio{
 class Bancada{
 public:
